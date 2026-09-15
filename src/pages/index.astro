@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { getCollection, getEntry, render } from 'astro:content';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const introEntry = await getEntry('site', 'intro');
+const confidenceEntry = await getEntry('site', 'confidence');
+const ctaEntry = await getEntry('site', 'cta');
+const { Content: ConfidenceBody } = confidenceEntry ? await render(confidenceEntry) : { Content: null };
+
+const trio = [
+  { label: 'Expertise', title: 'Deep SAP knowledge', copy: 'A team fluent in SAP implementations, migrations, and upgrades, applied to streamline operations and remove the friction that slows growth.' },
+  { label: 'Approach', title: 'Built around your business', copy: 'No two clients get the same plan. We take time to understand your operations before proposing a solution, so what we build fits how you work.' },
+  { label: 'Results', title: 'Outcomes you can measure', copy: 'Cleaner processes, faster reporting, and systems your teams trust, the kind of results that hold up once the project ends.' },
+];
+
+const industries = ['Manufacturing', 'Retail & Logistics', 'Financial Services', 'Public Sector', 'Healthcare'];
+---
+<BaseLayout title="SAP Solutions Provider">
+  <Hero />
+
+  <section class="trio">
+    <div class="wrap trio-grid">
+      {trio.map((item) => (
+        <div class="trio-item">
+          <span class="eyebrow">{item.label}</span>
+          <h3>{item.title}</h3>
+          <p>{item.copy}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {introEntry && (
+    <section class="tint">
+      <div class="wrap section-head">
+        <h2>{introEntry.data.title}</h2>
+        {introEntry.data.subtitle && <p>{introEntry.data.subtitle}</p>}
+      </div>
+    </section>
+  )}
+
+  {confidenceEntry && (
+    <section id="about">
+      <div class="wrap confidence">
+        <h2>{confidenceEntry.data.title}</h2>
+        <div class="confidence-body">{ConfidenceBody && <ConfidenceBody />}</div>
+      </div>
+    </section>
+  )}
+
+  <section id="services" class="tint">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>End-to-end SAP delivery</h2>
+        <p>From the first roadmap conversation to day-to-day operations, we cover the full lifecycle of your SAP environment.</p>
+      </div>
+      <div class="grid-3">
+        {services.map((s) => (
+          <ServiceCard title={s.data.title} summary={s.data.summary} icon={s.data.icon} ctaLabel={s.data.ctaLabel} ctaHref={s.data.ctaHref} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="industries">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Industries we work with</h2>
+        <p>SAP looks different in every sector, our teams adapt the approach to fit yours.</p>
+      </div>
+      <div class="industry-grid">
+        {industries.map((name) => <div class="industry-chip">{name}</div>)}
+      </div>
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="tint">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>From the blog</h2>
+          <p>Notes on SAP strategy, implementation, and keeping a landscape healthy after go-live.</p>
+        </div>
+        <div class="grid-3">
+          {posts.map((p) => (
+            <BlogCard slug={p.id} title={p.data.title} description={p.data.description} pubDate={p.data.pubDate} tags={p.data.tags} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {ctaEntry && (
+    <section class="cta-band">
+      <div class="wrap cta-inner">
+        <div>
+          <h2>{ctaEntry.data.title}</h2>
+          {ctaEntry.data.subtitle && <p>{ctaEntry.data.subtitle}</p>}
+        </div>
+        <a href="/contact" class="btn btn-prima ry">Book a conversation</a>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .trio{ padding:88px 0; }
+  .trio-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .trio-item{
+    position:relative; overflow:hidden;
+    background:var(--tint); border:1px solid var(--line); border-radius:6px;
+    padding:40px 32px 36px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.04);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .trio-item::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--red);
+  }
+  .trio-item:hover{ transform:translateY(-4px); box-shadow:0 14px 28px rgba(0,0,0,0.09); }
+  .trio-item .eyebrow{ margin-bottom:10px; }
+  .trio-item h3{ font-size:20px; margin:8px 0 12px; }
+  .trio-item p{ color:var(--grey); font-size:14.5px; }
+  @media (max-width:820px){
+    .trio-grid{ grid-template-columns:1fr; }
+  }
+
+  .confidence{ max-width:820px; margin:0 auto; }
+  .confidence h2{ text-align:center; margin-bottom:36px; }
+  .confidence-body :global(p){ color:var(--grey); margin-bottom:16px; font-size:16px; }
+  .confidence-body :global(ul){ margin:16px 0 0 4px; display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .confidence-body :global(li){ font-size:15px; color:var(--ink); padding-left:18px; position:relative; }
+  .confidence-body :global(li::before){ content:'\2713'; color:var(--red); position:absolute; left:0; font-weight:700; }
+
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.industry-chip {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 72px;
+  padding: 18px 20px;
+
+  box-sizing: border-box;
+
+  background: #fff;
+
+  border: 1px solid #cfd8dc;
+  border-radius: 2px;
+
+  color: var(--black);
+
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.3;
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    border-color .2s ease,
+    background-color .2s ease,
+    color .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+/* Small red accent at the top */
+.industry-chip::before {
+  content: '';
+
+  position: absolute;
+
+  top: -1px;
+  left: -1px;
+  right: -1px;
+
+  height: 3px;
+
+  background: var(--red);
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform .2s ease;
+}
+
+/* Hover */
+.industry-chip:hover {
+  border-color: var(--red);
+
+  background: var(--tint);
+
+  color: var(--red);
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.07);
+}
+
+.industry-chip:hover::before {
+  transform: scaleX(1);
+}
+
+/* Keyboard accessibility */
+.industry-chip:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+
+/* Tablet */
+@media (max-width: 900px) {
+  .industry-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+/* Mobile */
+@media (max-width: 560px) {
+  .industry-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .industry-chip {
+    min-height: 64px;
+    padding: 16px 12px;
+    font-size: 14px;
+  }
+}
+
+
+/* Very small screens */
+@media (max-width: 380px) {
+  .industry-grid {
+    grid-template-columns: 1fr;
+  }
+}
+  .cta-band{ background:var(--black); color:#fff; }
+  .cta-inner{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+  .cta-inner h2{ color:#fff; font-size:28px; max-width:480px; }
+  .cta-inner p{ color:#B9B9B9; margin-top:10px; }
+</style>

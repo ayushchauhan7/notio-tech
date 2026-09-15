@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map((page) => ({
+    params: { slug: page.id },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+<BaseLayout title={page.data.title} description={page.data.summary}>
+  <section class="wrap page-hero">
+    <span class="eyebrow">{page.data.section}</span>
+    <h1>{page.data.title}</h1>
+    <p class="lede">{page.data.summary}</p>
+  </section>
+  <section class="wrap page-body">
+    <Content />
+    <a href="/contact" class="btn btn-primary">Talk to us</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero{ padding:56px 0 8px; max-width:720px; }
+  h1{ font-size:34px; margin-top:6px; }
+  .lede{ color:var(--grey); margin-top:14px; font-size:16.5px; }
+  .page-body{ padding-top:24px; padding-bottom:88px; max-width:720px; }
+  .page-body :global(p){ color:var(--ink); font-size:16px; margin-bottom:28px; }
+</style>

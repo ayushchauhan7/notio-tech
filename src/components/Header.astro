@@ -1,0 +1,890 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const latest = posts[0];
+
+const menus = [
+  {
+    label: 'Services',
+    links: [
+      { label: 'Strategy and Advisory', href: '/strategy-and-advisory' },
+      { label: 'Implementation', href: '/implementation' },
+      { label: 'AMS & VAR', href: '/ams-and-var' },
+    ],
+  },
+  {
+    label: 'Technologies',
+    links: [
+      { label: 'SAP S/4HANA Cloud Public Edition', href: '/sap-s4hana-public' },
+      { label: 'SAP S/4HANA Cloud Private Edition', href: '/sap-s4hana-private' },
+      { label: 'SAP Business Technology Platform', href: '/sap-business-technology-platform' },
+      { label: 'SAP Business AI', href: '/sap-business-ai' },
+    ],
+  },
+  {
+    label: 'Business Capability Area',
+    links: [
+      { label: 'SAP Financial Management', href: '/sap-financial-management' },
+      { label: 'SAP Supply Chain Management', href: '/sap-supply-chain-management' },
+      { label: 'SAP Spend Management', href: '/spend-management' },
+      { label: 'SAP Human Capital Management', href: '/sap-human-capital-management' },
+      { label: 'SAP Sustainability', href: '/sap-sustainability' },
+      { label: 'SAP Tax and Revenue Management', href: '/tax-and-revenue-management' },
+      { label: 'SAP CX and Business AI', href: '/sap-cx-business-ai' },
+      { label: 'MuleSoft', href: '/mulesoft' },
+    ],
+  },
+  {
+    label: 'News & Resources',
+    links: [
+      { label: 'Blogs', href: '/blog' },
+      { label: 'Press Releases', href: '/press-releases' },
+      { label: 'Resources', href: '/resources' },
+      { label: 'Events', href: '/events' },
+    ],
+  },
+  {
+    label: 'About',
+    links: [
+      { label: 'About Notio', href: '/about' },
+      { label: 'Leadership Team', href: '/leadership' },
+      { label: 'Notio Academy', href: '/academy' },
+      { label: 'Contact Us', href: '/contact' },
+    ],
+  },
+];
+---
+
+<!-- =========================
+     TOP BAR
+========================= -->
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <a href="/blog">Blog</a>
+    <a href="/resources">Resources</a>
+    <a href="/contact">Contact Us</a>
+    <a href="/careers">Careers</a>
+  </div>
+</div>
+
+
+<!-- =========================
+     MAIN HEADER
+========================= -->
+
+<header>
+  <div class="wrap nav">
+
+    <!-- BRAND -->
+
+    <a href="/" class="brand">
+      <svg
+        viewBox="0 0 40 28"
+        class="brand-mark"
+        aria-hidden="true"
+      >
+        <path
+          d="M2 26 L14 2 L18 2 L6 26 Z"
+          fill="#101010"
+        />
+
+        <path
+          d="M16 26 L28 2 L32 2 L20 26 Z"
+          fill="#E90008"
+        />
+      </svg>
+
+      <span class="brand-name">notio</span>
+    </a>
+
+
+    <!-- MOBILE MENU BUTTON -->
+
+    <button
+      class="nav-toggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      type="button"
+    >
+      <span></span>
+    </button>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="nav-links">
+
+      {menus.map((menu) => (
+        <div class="menu-item">
+
+          <button
+            class="main-link"
+            aria-expanded="false"
+            type="button"
+          >
+            {menu.label}
+
+            <svg
+              viewBox="0 0 448 512"
+              class="chevron"
+              aria-hidden="true"
+            >
+              <path
+                d="M207 381 13 187c-9-9-9-25 0-34l23-23c9-9 25-9 34 0l154 154 154-154c9-9 25-9 34 0l23 23c9 9 9 25 0 34L241 381c-9 9-25 9-34 0z"
+              />
+            </svg>
+          </button>
+
+
+          <!-- DROPDOWN -->
+
+          <div class="submenu">
+
+            <!-- WHAT'S NEW -->
+
+            {latest && (
+              <div class="whats-new">
+
+                <div class="whats-new-title">
+                  What's New
+                </div>
+
+                <div class="whats-new-heading">
+                  {latest.data.title}
+                </div>
+
+                <p>
+                  {latest.data.description}
+                </p>
+
+                <a href={`/blog/${latest.id}`}>
+                  Read more
+                </a>
+
+              </div>
+            )}
+
+
+            <!-- MENU LINKS -->
+
+            <div class="sublinks">
+
+              {menu.links.map((link) => (
+                <a href={link.href}>
+                  {link.label}
+                </a>
+              ))}
+
+            </div>
+
+          </div>
+
+        </div>
+      ))}
+
+    </nav>
+
+  </div>
+</header>
+
+
+<style>
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar {
+  background: var(--red);
+}
+
+.topbar-inner {
+  width: 100%;
+  max-width: 95%;
+  margin: 0 auto;
+
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 28px;
+
+  padding: 9px 32px;
+}
+
+.topbar-inner a {
+  color: #fff;
+
+  font-size: 12.5px;
+  font-weight: 600;
+
+  letter-spacing: .04em;
+
+  white-space: nowrap;
+}
+
+.topbar-inner a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+  position: sticky;
+  top: 0;
+
+  z-index: 100;
+
+  background: #fff;
+
+  border-bottom: 1px solid var(--line);
+}
+
+
+/* =========================================================
+   NAV CONTAINER
+========================================================= */
+
+.wrap.nav {
+  width: 100%;
+  max-width: 95%;
+
+  margin: 0 auto;
+
+  box-sizing: border-box;
+}
+
+.nav {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding: 16px 16px;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  flex-shrink: 0;
+}
+
+.brand-mark {
+  width: 30px;
+  height: 22px;
+
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: 'Inter', sans-serif;
+
+  font-weight: 800;
+
+  font-size: 22px;
+
+  color: var(--black);
+
+  letter-spacing: -0.01em;
+}
+
+
+/* =========================================================
+   DESKTOP NAV
+========================================================= */
+
+.nav-links {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 2px;
+
+  min-width: 0;
+}
+
+.menu-item {
+  position: relative;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   MAIN NAV BUTTON
+========================================================= */
+
+.main-link {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  background: none;
+
+  border: 0;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: var(--black);
+
+  font-family: inherit;
+
+  padding: 14px 10px;
+
+  white-space: nowrap;
+}
+
+.main-link:hover {
+  color: var(--red);
+}
+
+
+/* =========================================================
+   CHEVRON
+========================================================= */
+
+.chevron {
+  width: 9px;
+  height: 9px;
+
+  fill: currentColor;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   DESKTOP DROPDOWN
+========================================================= */
+
+.submenu {
+  position: absolute;
+
+  top: 100%;
+
+  left: 0;
+
+  /*
+    Prevent the dropdown from ever becoming
+    wider than the viewport.
+  */
+
+  width: min(640px, calc(100vw - 32px));
+
+  max-width: calc(100vw - 32px);
+
+  box-sizing: border-box;
+
+  background: #fff;
+
+  border: 1px solid var(--line);
+
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, 0.08);
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1.3fr);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform: translateY(6px);
+
+  transition:
+    opacity .15s ease,
+    transform .15s ease,
+    visibility .15s;
+
+  z-index: 50;
+}
+
+
+/*
+  Right-side menu items should anchor
+  their dropdown from the right edge.
+
+  This prevents:
+
+      | viewport
+      |
+      |        News & Resources
+      |                 |
+      |                 └───────────────>
+      |                                OFF SCREEN
+
+  Instead:
+
+      | viewport
+      |        ┌───────────────────────┐
+      |        │       dropdown        │
+      |        └───────────────────────┘
+      |                 |
+      |          News & Resources
+*/
+
+.menu-item:nth-child(n + 2) .submenu {
+  left: auto;
+
+  right: 0;
+}
+
+
+/* =========================================================
+   SHOW DROPDOWN
+========================================================= */
+
+.menu-item:hover .submenu,
+.menu-item:focus-within .submenu {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   WHAT'S NEW
+========================================================= */
+
+.whats-new {
+  background: var(--tint);
+
+  padding: 26px;
+
+  border-right: 1px solid var(--line);
+
+  min-width: 0;
+}
+
+.whats-new-title {
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: .08em;
+
+  text-transform: uppercase;
+
+  color: var(--red);
+
+  margin-bottom: 14px;
+}
+
+.whats-new-heading {
+  font-weight: 700;
+
+  font-size: 15px;
+
+  color: var(--black);
+
+  margin-bottom: 8px;
+
+  line-height: 1.3;
+
+  overflow-wrap: anywhere;
+}
+
+.whats-new p {
+  font-size: 13px;
+
+  color: var(--grey);
+
+  margin-bottom: 12px;
+
+  overflow-wrap: anywhere;
+}
+
+.whats-new a {
+  font-size: 13px;
+
+  font-weight: 700;
+
+  color: var(--red);
+}
+
+.whats-new a:hover {
+  color: var(--red-dark);
+}
+
+
+/* =========================================================
+   SUB LINKS
+========================================================= */
+
+.sublinks {
+  padding: 22px 26px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.sublinks a {
+  font-size: 14px;
+
+  color: var(--black);
+
+  padding: 9px 0;
+
+  border-bottom: 1px solid var(--line);
+
+  overflow-wrap: anywhere;
+}
+
+.sublinks a:last-child {
+  border-bottom: none;
+}
+
+.sublinks a:hover {
+  color: var(--red);
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.nav-toggle {
+  display: none;
+
+  background: none;
+
+  border: 0;
+
+  cursor: pointer;
+
+  padding: 8px 0 8px 8px;
+
+  flex-shrink: 0;
+}
+
+.nav-toggle span,
+.nav-toggle span::before,
+.nav-toggle span::after {
+  display: block;
+
+  width: 22px;
+
+  height: 2px;
+
+  background: var(--black);
+
+  position: relative;
+
+  transition: .2s;
+}
+
+.nav-toggle span::before,
+.nav-toggle span::after {
+  content: '';
+
+  position: absolute;
+}
+
+.nav-toggle span::before {
+  top: -7px;
+}
+
+.nav-toggle span::after {
+  top: 7px;
+}
+
+
+@media (max-width: 1050px) {
+
+  /* Hide desktop utility bar on mobile/tablet */
+  .topbar {
+    display: none;
+  }
+
+  .nav {
+    padding: 14px 16px;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+
+    top: 58px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    background: #fff;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    gap: 0;
+
+    padding: 8px 24px 40px;
+
+    border-top: 1px solid var(--line);
+
+    transform: translateY(-110%);
+
+    transition: transform .25s ease;
+
+    z-index: 99;
+  }
+
+  .nav-links.open {
+    transform: translateY(0);
+  }
+
+  .menu-item {
+    width: 100%;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .main-link {
+    width: 100%;
+    justify-content: space-between;
+    padding: 16px 0;
+  }
+
+  .submenu,
+  .menu-item:nth-child(n + 2) .submenu {
+    position: static;
+
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+
+    box-shadow: none;
+    border: none;
+
+    display: none;
+
+    grid-template-columns: 1fr;
+  }
+
+  .menu-item.expanded .submenu {
+    display: block;
+  }
+
+  .whats-new {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    padding: 20px 0;
+  }
+
+  .sublinks {
+    padding: 6px 0 18px;
+  }
+
+  .sublinks a {
+    padding: 10px 0;
+  }
+}
+
+
+@media (max-width: 720px) {
+
+  .wrap.nav {
+    max-width: 100%;
+  }
+
+  .nav {
+    padding: 14px 20px;
+  }
+
+  .brand-name {
+    font-size: 21px;
+  }
+
+  .nav-links {
+    top: 55px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+
+@media (max-width: 400px) {
+
+  .nav {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .brand-name {
+    font-size: 20px;
+  }
+
+  .brand-mark {
+    width: 28px;
+    height: 20px;
+  }
+
+  .nav-links {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+</style>
+
+
+<script>
+  /*
+   * MOBILE NAVIGATION
+   *
+   * We don't check window.innerWidth only once.
+   * Instead, the handlers are attached regardless
+   * of the initial viewport size.
+   */
+
+  const navToggle =
+    document.querySelector('.nav-toggle');
+
+  const navLinks =
+    document.querySelector('.nav-links');
+
+
+  /*
+   * Open / close hamburger menu
+   */
+
+  navToggle?.addEventListener('click', () => {
+
+    const isOpen =
+      navLinks?.classList.toggle('open');
+
+    navToggle.setAttribute(
+      'aria-expanded',
+      isOpen ? 'true' : 'false'
+    );
+
+  });
+
+
+  /*
+   * Expand individual mobile dropdowns
+   */
+
+  document
+    .querySelectorAll('.menu-item > .main-link')
+    .forEach((btn) => {
+
+      btn.addEventListener('click', () => {
+
+        /*
+         * On desktop, dropdowns are controlled
+         * by hover/focus, so don't interfere.
+         */
+
+        if (window.innerWidth > 1050) {
+          return;
+        }
+
+
+        const item =
+          btn.parentElement;
+
+
+        if (!item) {
+          return;
+        }
+
+
+        const isExpanded =
+          item.classList.toggle('expanded');
+
+
+        btn.setAttribute(
+          'aria-expanded',
+          isExpanded ? 'true' : 'false'
+        );
+
+      });
+
+    });
+
+
+  /*
+   * If the browser is resized back to desktop,
+   * clean up the mobile menu state.
+   */
+
+  window.addEventListener('resize', () => {
+
+    if (window.innerWidth > 1050) {
+
+      navLinks?.classList.remove('open');
+
+      navToggle?.setAttribute(
+        'aria-expanded',
+        'false'
+      );
+
+      document
+        .querySelectorAll('.menu-item')
+        .forEach((item) => {
+          item.classList.remove('expanded');
+        });
+
+      document
+        .querySelectorAll('.main-link')
+        .forEach((btn) => {
+          btn.setAttribute(
+            'aria-expanded',
+            'false'
+          );
+        });
+
+    }
+
+  });
+</script>

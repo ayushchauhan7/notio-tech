@@ -1,0 +1,126 @@
+---
+import { getEntry, render } from 'astro:content';
+
+const heroEntry = await getEntry('site', 'hero');
+const { Content } = heroEntry ? await render(heroEntry) : { Content: null };
+---
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      {heroEntry?.data.eyebrow && <span class="eyebrow">{heroEntry.data.eyebrow}</span>}
+      <h1>{heroEntry?.data.title}</h1>
+      {heroEntry?.data.subtitle && <p class="subtitle">{heroEntry.data.subtitle}</p>}
+      <div class="lede">{Content && <Content />}</div>
+      <div class="hero-ctas">
+        <a href="/contact" class="btn btn-primary">Start a conversation</a>
+        <a href="/#services" class="btn btn-outline">See what we do</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 420 420" aria-hidden="true">
+        <line class="link" style="animation-delay:.05s" x1="210" y1="210" x2="100" y2="90" stroke="#E4E4E4" stroke-width="2"/>
+        <line class="link" style="animation-delay:.15s" x1="210" y1="210" x2="320" y2="90" stroke="#E4E4E4" stroke-width="2"/>
+        <line class="link" style="animation-delay:.25s" x1="210" y1="210" x2="80" y2="230" stroke="#E4E4E4" stroke-width="2"/>
+        <line class="link" style="animation-delay:.35s" x1="210" y1="210" x2="340" y2="230" stroke="#E4E4E4" stroke-width="2"/>
+        <line class="link" style="animation-delay:.45s" x1="210" y1="210" x2="140" y2="340" stroke="#E4E4E4" stroke-width="2"/>
+        <line class="link" style="animation-delay:.55s" x1="210" y1="210" x2="290" y2="340" stroke="#E4E4E4" stroke-width="2"/>
+
+        <circle class="pulse-ring" cx="210" cy="210" r="44" fill="none" stroke="#E90008" stroke-width="2"/>
+        <circle class="pulse-ring" style="animation-delay:1s" cx="210" cy="210" r="44" fill="none" stroke="#E90008" stroke-width="2"/>
+        <g class="core">
+          <circle cx="210" cy="210" r="44" fill="#101010"/>
+          <text x="210" y="206" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="13" font-weight="700">SAP</text>
+          <text x="210" y="221" text-anchor="middle" fill="#E90008" font-family="Inter, sans-serif" font-size="8.5" font-weight="700">CORE</text>
+        </g>
+
+        <g class="node float" style="animation-delay:.2s, 1.4s">
+          <circle cx="100" cy="90" r="28" fill="#fff" stroke="#E90008" stroke-width="2"/>
+          <text x="100" y="94" text-anchor="middle" font-family="Inter" font-size="9.5" font-weight="600">Finance</text>
+        </g>
+        <g class="node float" style="animation-delay:.3s, 1.6s">
+          <circle cx="320" cy="90" r="28" fill="#fff" stroke="#E90008" stroke-width="2"/>
+          <text x="320" y="94" text-anchor="middle" font-family="Inter" font-size="8.5" font-weight="600">Supply Chain</text>
+        </g>
+        <g class="node float" style="animation-delay:.4s, 1.8s">
+          <circle cx="80" cy="230" r="28" fill="#fff" stroke="#E90008" stroke-width="2"/>
+          <text x="80" y="234" text-anchor="middle" font-family="Inter" font-size="9.5" font-weight="600">HR</text>
+        </g>
+        <g class="node float" style="animation-delay:.5s, 2s">
+          <circle cx="340" cy="230" r="28" fill="#fff" stroke="#E90008" stroke-width="2"/>
+          <text x="340" y="234" text-anchor="middle" font-family="Inter" font-size="9.5" font-weight="600">CX</text>
+        </g>
+        <g class="node float" style="animation-delay:.6s, 2.2s">
+          <circle cx="140" cy="340" r="28" fill="#fff" stroke="#E90008" stroke-width="2"/>
+          <text x="140" y="344" text-anchor="middle" font-family="Inter" font-size="8.5" font-weight="600">Spend</text>
+        </g>
+        <g class="node float" style="animation-delay:.7s, 2.4s">
+          <circle cx="290" cy="340" r="28" fill="#fff" stroke="#E90008" stroke-width="2"/>
+          <text x="290" y="344" text-anchor="middle" font-family="Inter" font-size="8" font-weight="600">Analytics</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero{ padding:64px 0 40px; }
+  .hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+  h1{ font-size:44px; max-width:620px; }
+  .subtitle{ font-family:'Inter', sans-serif; font-weight:700; font-style:normal; color:var(--black); font-size:20px; margin-top:14px; }
+  .lede{ color:var(--grey); font-size:16.5px; max-width:520px; margin-top:14px; }
+  .hero-ctas{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
+
+  /* ---- diagram animation ---- */
+  .link{
+    stroke-dasharray:200;
+    stroke-dashoffset:200;
+    animation:draw-line .7s ease-out forwards;
+  }
+  @keyframes draw-line{ to{ stroke-dashoffset:0; } }
+
+  .core{
+    transform-box:fill-box; transform-origin:center;
+    opacity:0;
+    animation:core-in .5s ease-out .65s forwards;
+  }
+  @keyframes core-in{
+    from{ opacity:0; transform:scale(.7); }
+    to{ opacity:1; transform:scale(1); }
+  }
+
+  .pulse-ring{
+    transform-box:fill-box; transform-origin:center;
+    opacity:0;
+    animation:pulse 2.6s ease-out .9s infinite;
+  }
+  @keyframes pulse{
+    0%{ opacity:.5; transform:scale(1); }
+    75%,100%{ opacity:0; transform:scale(1.55); }
+  }
+
+  .node{
+    transform-box:fill-box; transform-origin:center;
+    opacity:0;
+    animation-name:node-in, node-float;
+    animation-duration:.5s, 3.4s;
+    animation-timing-function:ease-out, ease-in-out;
+    animation-iteration-count:1, infinite;
+    animation-fill-mode:forwards, none;
+  }
+  @keyframes node-in{
+    from{ opacity:0; transform:scale(.5); }
+    to{ opacity:1; transform:scale(1); }
+  }
+  @keyframes node-float{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-5px); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .link{ animation:none; stroke-dashoffset:0; }
+    .core{ animation:none; opacity:1; transform:none; }
+    .pulse-ring{ animation:none; opacity:0; }
+    .node{ animation:none; opacity:1; transform:none; }
+  }
+</style>
