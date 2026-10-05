@@ -9,12 +9,12 @@ interface Props {
 const { title, summary, icon, ctaLabel, ctaHref } = Astro.props;
 ---
 <div class="service-card">
-  <svg viewBox="0 0 42 42" class="icon" aria-hidden="true" fill="none" stroke="#E90008">
+  <svg viewBox="0 0 42 42" class="icon" aria-hidden="true" fill="none" stroke="#E90063">
     {icon === 'strategy' && (
       <>
         <circle cx="21" cy="21" r="15" stroke-width="2"/>
         <circle cx="21" cy="21" r="8.5" stroke-width="2"/>
-        <circle cx="21" cy="21" r="2.2" fill="#E90008" stroke="none"/>
+        <circle cx="21" cy="21" r="2.2" fill="#E90063" stroke="none"/>
       </>
     )}
     {icon === 'implementation' && (
@@ -39,7 +39,7 @@ const { title, summary, icon, ctaLabel, ctaHref } = Astro.props;
   .service-card {
     position: relative;
     background: #fff;
-    border: 1px solid #cfd8dc;
+    border: 1px solid var(--line);
     padding: 34px 30px;
     min-height: 250px;
     overflow: hidden;

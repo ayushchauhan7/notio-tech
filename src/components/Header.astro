@@ -81,24 +81,8 @@ const menus = [
 
     <!-- BRAND -->
 
-    <a href="/" class="brand">
-      <svg
-        viewBox="0 0 40 28"
-        class="brand-mark"
-        aria-hidden="true"
-      >
-        <path
-          d="M2 26 L14 2 L18 2 L6 26 Z"
-          fill="#101010"
-        />
-
-        <path
-          d="M16 26 L28 2 L32 2 L20 26 Z"
-          fill="#E90008"
-        />
-      </svg>
-
-      <span class="brand-name">notio</span>
+    <a href="/" class="brand" aria-label="Notio Technologies home">
+      <img src="/notio-logo.png" class="brand-logo" alt="Notio Technologies" />
     </a>
 
 
@@ -290,23 +274,10 @@ header {
   flex-shrink: 0;
 }
 
-.brand-mark {
-  width: 30px;
-  height: 22px;
-
+.brand-logo {
+  width: 190px;
+  height: auto;
   flex-shrink: 0;
-}
-
-.brand-name {
-  font-family: 'Inter', sans-serif;
-
-  font-weight: 800;
-
-  font-size: 22px;
-
-  color: var(--black);
-
-  letter-spacing: -0.01em;
 }
 
 
@@ -740,8 +711,8 @@ header {
     padding: 14px 20px;
   }
 
-  .brand-name {
-    font-size: 21px;
+  .brand-logo {
+    width: 170px;
   }
 
   .nav-links {
@@ -759,13 +730,8 @@ header {
     padding-right: 16px;
   }
 
-  .brand-name {
-    font-size: 20px;
-  }
-
-  .brand-mark {
-    width: 28px;
-    height: 20px;
+  .brand-logo {
+    width: 150px;
   }
 
   .nav-links {
