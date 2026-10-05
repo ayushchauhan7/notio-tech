@@ -1,8 +1,8 @@
 ---
-title: "Strategy and Advisory"
-summary: "A finely-tuned transformation strategy that steers you away from dead ends and roadblocks and towards SAP success. We walk alongside you through the journey, so you get exactly what you need from your new ERP solution and your chosen supplier."
+title: "ERP Advisory"
+summary: "Get experienced guidance on your ERP plans, business needs, and the SAP approach that fits. Notio's consultants help you assess your options and move forward with a clear direction."
 icon: "strategy"
 order: 1
-ctaLabel: "Talk about strategy"
+ctaLabel: "Talk to an advisor"
 ctaHref: "/contact"
 ---

@@ -16,14 +16,14 @@ const ctaEntry = await getEntry('site', 'cta');
 const { Content: ConfidenceBody } = confidenceEntry ? await render(confidenceEntry) : { Content: null };
 
 const trio = [
-  { label: 'Expertise', title: 'Deep SAP knowledge', copy: 'A team fluent in SAP implementations, migrations, and upgrades, applied to streamline operations and remove the friction that slows growth.' },
-  { label: 'Approach', title: 'Built around your business', copy: 'No two clients get the same plan. We take time to understand your operations before proposing a solution, so what we build fits how you work.' },
-  { label: 'Results', title: 'Outcomes you can measure', copy: 'Cleaner processes, faster reporting, and systems your teams trust, the kind of results that hold up once the project ends.' },
+  { label: 'Our Expertise', title: 'SAP experience that moves business forward', copy: 'Our experienced SAP consultants work across implementations, migrations, upgrades, and application support to help streamline operations and support business growth.' },
+  { label: 'Our Approach', title: 'A solution tailored to your needs', copy: "Every business is different. We take time to understand your structure, challenges, and goals, then shape an SAP solution to fit your objectives." },
+  { label: 'Our Results', title: 'Practical outcomes for your business', copy: 'Our SAP solutions are designed to improve operational efficiency and help your business adapt and grow in a competitive market.' },
 ];
 
-const industries = ['Manufacturing', 'Retail & Logistics', 'Financial Services', 'Public Sector', 'Healthcare'];
+const industries = ['Manufacturing', 'Pharmaceutical', 'FMCG', 'Automotive', 'Chemical', 'Media'];
 ---
-<BaseLayout title="SAP Solutions Provider">
+<BaseLayout title="SAP Solutions and Services" description="Notio Technology Pvt. Ltd. provides SAP implementation, migration, integration, advisory, and application management services.">
   <Hero />
 
   <section class="trio">
@@ -59,8 +59,8 @@ const industries = ['Manufacturing', 'Retail & Logistics', 'Financial Services',
   <section id="services" class="tint">
     <div class="wrap">
       <div class="section-head">
-        <h2>End-to-end SAP delivery</h2>
-        <p>From the first roadmap conversation to day-to-day operations, we cover the full lifecycle of your SAP environment.</p>
+        <h2>SAP services for your business</h2>
+        <p>From SAP S/4HANA implementation and ERP advisory to application management, our consultants support your SAP journey.</p>
       </div>
       <div class="grid-3">
         {services.map((s) => (
@@ -73,8 +73,8 @@ const industries = ['Manufacturing', 'Retail & Logistics', 'Financial Services',
   <section id="industries">
     <div class="wrap">
       <div class="section-head">
-        <h2>Industries we work with</h2>
-        <p>SAP looks different in every sector, our teams adapt the approach to fit yours.</p>
+        <h2>Industries we serve</h2>
+        <p>We support businesses across a range of industries with SAP services tailored to their operations.</p>
       </div>
       <div class="industry-grid">
         {industries.map((name) => <div class="industry-chip">{name}</div>)}
@@ -105,7 +105,7 @@ const industries = ['Manufacturing', 'Retail & Logistics', 'Financial Services',
           <h2>{ctaEntry.data.title}</h2>
           {ctaEntry.data.subtitle && <p>{ctaEntry.data.subtitle}</p>}
         </div>
-        <a href="/contact" class="btn btn-prima ry">Book a conversation</a>
+        <a href="/contact" class="btn btn-primary">Contact our team</a>
       </div>
     </section>
   )}

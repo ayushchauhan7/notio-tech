@@ -1,4 +1,4 @@
 ---
-title: "Everything SAP. One partner."
-subtitle: "From strategy and implementation to proactive support and continuous improvement, we deliver a complete SAP service — clarity, confidence, and value at every stage of the journey."
+title: "SAP expertise for every stage"
+subtitle: "Get support from experienced SAP consultants, whether you are planning an implementation, modernizing an existing system, connecting business applications, or improving day-to-day operations."
 ---

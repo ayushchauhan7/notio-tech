@@ -1,8 +1,8 @@
 ---
-title: "Implementation & Migration"
-summary: "Proven methodologies and accelerators for standing up, upgrading, or migrating your SAP landscape — with deep experience across Public and Private Cloud, a clean-core philosophy, and a focus on fast, tangible ROI."
+title: "SAP S/4HANA Implementation"
+summary: "Plan and deliver SAP S/4HANA in the cloud or on premises. Notio uses the SAP Activate methodology to shape an implementation around your business and surface needs early in the project."
 icon: "implementation"
 order: 2
-ctaLabel: "Plan a rollout"
+ctaLabel: "Plan an implementation"
 ctaHref: "/contact"
 ---
