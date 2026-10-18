@@ -1,6 +1,6 @@
 ---
-title: "SAP solutions shaped around your business"
-subtitle: "Your partner for implementation, migration, integration and support."
-eyebrow: "Notio Technology Pvt. Ltd. · Established 2018"
+title: "Technology solutions built around your business."
+subtitle: "From IT consulting and digital transformation to enterprise applications, software development, and managed services, we help businesses solve complex challenges and achieve more with technology."
+eyebrow: "NOTIO TECHNOLOGIES | IT SERVICES & CONSULTING"
 ---
-Notio Technology brings experienced SAP consultants together to help businesses get more from their systems. From SAP S/4HANA implementation and upgrades to application management and third-party integration, we tailor the work to your goals and operating needs.
+<b>At Notio Technologies, we combine technical expertise with a business-first approach to deliver practical, scalable solutions aligned with your goals, processes, and long-term growth.</b>

@@ -1,8 +1,8 @@
 ---
-title: "SAP S/4HANA Implementation"
-summary: "Plan and deliver SAP S/4HANA in the cloud or on premises. Notio uses the SAP Activate methodology to shape an implementation around your business and surface needs early in the project."
+title: "Enterprise Applications & Development"
+summary: "Build and modernise your technology landscape with enterprise applications, SAP solutions, custom software development, and system integration tailored to your business processes."
 icon: "implementation"
 order: 2
-ctaLabel: "Plan an implementation"
+ctaLabel: "Explore Our Solutions →"
 ctaHref: "/contact"
 ---

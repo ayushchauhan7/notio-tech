@@ -1,8 +1,8 @@
 ---
-title: "SAP Application Management"
-summary: "Keep SAP applications dependable with functional and technical support, issue resolution, and ongoing improvements. Notio's application management services are designed around your operational needs."
+title: "Managed IT & Application Services"
+summary: "Keep your technology reliable and performing at its best with ongoing application support, maintenance, issue resolution, performance optimisation, and continuous improvement."
 icon: "support"
 order: 3
-ctaLabel: "Get ongoing support"
+ctaLabel: "Get Ongoing Support →"
 ctaHref: "/contact"
 ---

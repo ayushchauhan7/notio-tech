@@ -1,6 +1,10 @@
 ---
-title: "About Notio Technology"
+title: "About Notio Technologies"
 ---
-Established in 2018 by experienced SAP consultants, Notio Technology Pvt. Ltd. is an IT solutions provider specializing in SAP services. We help organizations make the most of SAP through implementation, ongoing support, and upgrades tailored to their needs.
+<b>Established in 2018, Notio Technologies Pvt. Ltd. is an IT services and consulting company helping businesses solve technology challenges, streamline operations, and embrace digital transformation.</b>
 
-Our consultants work with businesses to understand their structure and goals, recommend a fitting approach, and support the system beyond go-live. Our services include SAP S/4HANA implementation, migration and upgrades, application management, third-party integration, ERP advisory, SAP SuccessFactors, SAP EWM, and SAP Analytics Cloud.
+With roots in SAP and enterprise technology, we have a strong foundation in business applications, system integration, and technical consulting. We bring this expertise together with a broader technology perspective to help organizations build efficient, scalable, and reliable solutions.
+
+Our services span enterprise applications, software development, IT consulting, system integration, and application management. We focus on understanding each client's unique requirements and delivering solutions that align technology investments with business objectives.
+
+<b>Our philosophy is simple: understand the business, solve the right problems, and deliver technology that creates lasting value.</b>

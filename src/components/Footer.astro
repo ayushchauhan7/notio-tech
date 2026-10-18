@@ -13,16 +13,16 @@ const social = [
 <footer>
   <div class="wrap foot-top">
     <div class="foot-brand">
-      <a href="/" aria-label="Notio Technologies home"><img class="footer-logo" src="/notio-logo.png" alt="Notio Technologies" /></a>
-      <p>Notio Technology Pvt. Ltd. helps businesses implement, integrate, and support SAP solutions.</p>
+      <a href="/" aria-label="Notio Technologies Footer"><img class="footer-logo" src="/company-logo.png" alt="Notio Technologies" /></a>
+      <p>Notio Technologies is an IT services and consulting company helping businesses modernise technology, streamline operations, and build scalable solutions through enterprise applications, software development, and technology consulting.</p>
     </div>
     <div class="foot-col">
       <h5>Company</h5>
       <a href="/careers">Careers</a>
+      <!-- <a href="/about">About Us</a> -->
       <a href="/contact">Contact Us</a>
-      <a href="/events">Events</a>
-      <a href="/about">About Us</a>
-      <a href="/blog">Blogs</a>
+      <!-- <a href="/events">Events</a> -->
+      <!-- <a href="/blog">Blogs</a> -->
     </div>
     <!-- <div class="foot-col">
       <h5>Legal</h5>
@@ -43,24 +43,34 @@ const social = [
     </div>
   </div>
   <div class="wrap foot-bottom">
-    <span>&copy; {year} Notio Technology Pvt. Ltd. All rights reserved.</span>
+    <span>&copy; {year} Notio Technologies Pvt. Ltd. All rights reserved.</span>
   </div>
 </footer>
 
 <style>
-  footer{ background:var(--black); color:#C9C9C9; padding:56px 0 26px;  }
+  footer{ background:var(--black); color:#fff; padding:56px 0 26px;  }
   .foot-top{ display:flex; gap:48px; flex-wrap:wrap; padding-bottom:34px; border-bottom:1px solid rgba(255,255,255,0.12); }
   .foot-brand{ flex:1 1 220px; }
-  .footer-logo{ width:190px; height:auto; }
-  .foot-brand p{ margin-top:12px; max-width:280px; font-size:13.5px; color:#9A9A9A; }
+  /* .footer-logo{ width:190px; height:auto; } */
+  .footer-logo {
+  display: inline;
+  width: 280px;
+  height: auto;
+  margin-top: -110px;
+  margin-left: -53px;
+  object-fit: contain;
+  object-position: left;
+  background: transparent;
+}
+  .foot-brand p{ margin-top:-90px; max-width:280px; font-size:13.5px; color:#fff; }
   .foot-col h5{ font-size:12.5px; color:#fff; font-weight:700; letter-spacing:.05em; text-transform:uppercase; margin-bottom:14px; }
-  .foot-col a{ display:block; font-size:13.5px; color:#B4B4B4; padding:5px 0; }
+  .foot-col a{ display:block; font-size:13.5px; color:#fff; padding:5px 0; }
   .foot-col a:hover{ color:#fff; }
   .foot-actions{ display:flex; flex-direction:column; align-items:flex-start; gap:20px; }
   .foot-actions .btn{ padding:10px 22px; font-size:13px; }
   .socials{ display:flex; gap:14px; }
   .socials a{ display:flex; }
-  .socials svg{ width:16px; height:16px; fill:#B4B4B4; }
+  .socials svg{ width:16px; height:16px; fill:#fff; }
   .socials a:hover svg{ fill:var(--red); }
-  .foot-bottom{ padding-top:22px; font-size:12.5px; color:#7A7A7A; }
+  .foot-bottom{ padding-top:22px; font-size:12.5px; color:#fff; }
 </style>
