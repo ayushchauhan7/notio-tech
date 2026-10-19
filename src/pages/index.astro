@@ -16,9 +16,9 @@ const ctaEntry = await getEntry('site', 'cta');
 const { Content: ConfidenceBody } = confidenceEntry ? await render(confidenceEntry) : { Content: null };
 
 const trio = [
-  { label: 'OUR EXPERTISE', title: 'Deep SAP expertise', copy: 'Our consultants bring practical experience across SAP implementation, development, integration, migration, upgrades, and application management — helping businesses build and maintain reliable enterprise systems.' },
-  { label: 'OUR APPROACH', title: 'Technology built around your business', copy: "We start with your business processes, challenges, and goals. Then we design the right solution around them — balancing technical excellence with practical business needs." },
-  { label: 'OUR COMMITMENT', title: 'Focused on lasting value', copy: 'We don\'t stop at implementation. We focus on solutions that improve operations, remain maintainable, and continue to support your business as it grows.' },
+  { label: 'OUR EXPERTISE', title: 'Technology expertise that delivers', copy: 'We bring together expertise across IT consulting, SAP and enterprise applications, software development, system integration, and application support to help businesses build reliable, scalable technology solutions.' },
+  { label: 'OUR APPROACH', title: 'Solutions designed around your business', copy: "We begin by understanding your business goals, processes, and challenges. Then we develop practical technology solutions that align with your needs, improve efficiency, and support long-term growth." },
+  { label: 'OUR COMMITMENT', title: 'Focused on lasting value', copy: 'Our focus goes beyond implementation. We help businesses improve operations, optimize technology investments, and maintain solutions that adapt to changing requirements and evolving business needs.' },
 ];
 
 const industries = ['Manufacturing', 'Pharmaceuticals & Life Sciences', 'FMCG', 'Automotive', 'Chemicals', 'Media & Entertainment', 'Information Technology', 'Retail & E-commerce', 'Logistics & Supply Chain', 'Energy & Utilities', 'Telecommunications', 'Banking & Financial Services', 'Healthcare', 'Public Sector', 'Education'];
@@ -78,8 +78,8 @@ const clients = [
   <section id="services" class="tint">
     <div class="wrap">
       <div class="section-head">
-        <h2>SAP services for your business</h2>
-        <p>From SAP strategy and implementation to development and ongoing support, we help businesses build, improve, and manage SAP environments that work for their operations.</p>
+        <h2>Technology services for your business</h2>
+        <p>From IT consulting and software development to enterprise applications, system integration, and ongoing support, we help businesses build, modernise, and manage technology solutions that drive operational efficiency and long-term growth.</p>
       </div>
       <div class="grid-3">
         {services.map((s) => (
@@ -93,7 +93,7 @@ const clients = [
     <div class="wrap">
       <div class="section-head">
         <h2>Industries we serve</h2>
-        <p>We bring SAP and technology expertise to businesses across industries, delivering solutions tailored to their operations and growth.</p>
+        <p>We work with businesses across diverse industries, combining technology expertise and business understanding to deliver solutions that address operational challenges, improve efficiency, and support sustainable growth.</p>
       </div>
       <div class="industry-grid">
         {industries.map((name) => <div class="industry-chip">{name}</div>)}

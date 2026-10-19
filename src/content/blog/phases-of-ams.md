@@ -1,4 +1,4 @@
----
+<!-- ---
 title: "The phases of Application Management Services"
 description: "What actually happens after go-live — and how a good AMS engagement is structured across its first year."
 pubDate: 2026-08-18
@@ -19,4 +19,4 @@ Once the system is stable, attention shifts to the backlog of "good enough for n
 
 The final phase is ongoing: new modules, regulatory changes, and the slow drift between what the business needs and what the system was originally built for.
 
-Treating these as three distinct phases — rather than one long undifferentiated "support" bucket — is what keeps an SAP landscape from quietly falling behind the business it's meant to serve.
+Treating these as three distinct phases — rather than one long undifferentiated "support" bucket — is what keeps an SAP landscape from quietly falling behind the business it's meant to serve. -->

@@ -12,26 +12,59 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="info-line"><strong>Email</strong><span><a href="mailto:info@notio-tech.com">info@notio-tech.com</a></span></div>
         <!-- <div class="info-line"><strong>Hours</strong><span>09:00 &ndash; 18:00</span></div> -->
       </div>
-      <form id="contact-form">
+      <form id="contact-form" action="https://formspree.io/f/xrpedvzd" method="POST">
         <div class="row2">
-          <input type="text" placeholder="Full name" required />
-          <input type="email" placeholder="Work email" required />
+          <input type="text" name="name" placeholder="Full name" autocomplete="name" required />
+          <input type="email" name="email" placeholder="Work email" autocomplete="email" required />
         </div>
-        <input type="text" placeholder="Company Name" />
-        <input type="text" placeholder="Service of Interest" />
-        <textarea placeholder="Tell us about your project or requirements"></textarea>
+        <input type="text" name="company" placeholder="Company Name" autocomplete="organization" />
+        <input type="text" name="service" placeholder="Service of Interest" />
+        <textarea name="message" placeholder="Tell us about your project or requirements"></textarea>
+        <input type="hidden" name="_subject" value="New enquiry from Notio Technology website" />
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden />
         <button type="submit" class="btn btn-primary">Send Enquiry →</button>
-        <p class="note" id="note" hidden>Thanks, this is a static demo form, so nothing was actually sent. Wire it up to your backend or a form service to go live.</p>
+        <p class="note" id="note" role="status" aria-live="polite" hidden></p>
       </form>
     </div>
   </section>
 </BaseLayout>
 
 <script>
-  document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+  document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    (e.target as HTMLFormElement).reset();
-    document.getElementById('note')?.removeAttribute('hidden');
+    const form = e.currentTarget as HTMLFormElement;
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const note = document.getElementById('note');
+
+    button.disabled = true;
+    button.textContent = 'Sending…';
+    note?.setAttribute('hidden', '');
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submission failed');
+      }
+
+      form.reset();
+      if (note) {
+        note.textContent = 'Thanks, your enquiry has been sent. We will get back to you soon.';
+        note.removeAttribute('hidden');
+      }
+    } catch {
+      if (note) {
+        note.textContent = 'We could not send your enquiry. Please try again or email info@notio-tech.com directly.';
+        note.removeAttribute('hidden');
+      }
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Send Enquiry →';
+    }
   });
 </script>
 
